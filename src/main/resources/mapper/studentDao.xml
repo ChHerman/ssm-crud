@@ -1,0 +1,28 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hc.ssm.crud.dao.StudentDao">
+    <select id="queryAllStudent" resultType="Student">
+        select student_id,student_name,student_class
+        from student;
+    </select>
+    <select id="queryStudentById" resultType="Student" parameterType="long">
+        select student_id,student_name,student_class
+        from student
+        where student_id=#{studentId};
+    </select>
+    <delete id="deleteStudentById" parameterType="long">
+      delete from student
+      where student_id=#{studentId};
+    </delete>
+    <update id="updateStudent">
+        update student
+        set student_name=#{studentName},
+            student_class=#{studentClass}
+        where student_id=#{studentId};
+    </update>
+    <insert id="addStudent">
+        insert into student(student_name,student_class)
+        values(#{studentName},#{studentClass});
+    </insert>
+</mapper>
